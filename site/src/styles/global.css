@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+/* ===========================================================
+   StormView — Design System
+   Dark, cinematic, security-tech. Crimson + steel on black.
+   =========================================================== */
+@theme {
+  --color-ink: #0a0b0d;          /* page background */
+  --color-ink-2: #0f1114;        /* raised surface */
+  --color-ink-3: #16191e;        /* cards */
+  --color-line: #23272e;         /* hairline borders */
+
+  --color-crimson: #b0252a;      /* brand red (logo) */
+  --color-crimson-bright: #e6303a;
+  --color-crimson-glow: #ff3b43;
+
+  --color-steel: #8a929e;        /* brand grey (logo) */
+  --color-steel-light: #c4cbd4;
+
+  --color-fog: #f4f6f8;          /* primary text */
+  --color-mist: #9aa3af;         /* secondary text */
+
+  --font-display: "Space Grotesk", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- base ---------- */
+html {
+  scroll-behavior: auto; /* Lenis handles smoothing */
+  background: var(--color-ink);
+}
+body {
+  background: var(--color-ink);
+  color: var(--color-fog);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+::selection {
+  background: var(--color-crimson);
+  color: white;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Lenis ---------- */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* ---------- reveal animation defaults (set before JS runs) ---------- */
+[data-reveal] { opacity: 0; transform: translateY(28px); }
+.is-ready [data-reveal] { will-change: opacity, transform; }
+
+/* ---------- ambient grid + glow utilities ---------- */
+.bg-grid {
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+.text-glow { text-shadow: 0 0 32px rgba(255, 59, 67, 0.45); }
+.ring-glow { box-shadow: 0 0 0 1px var(--color-line), 0 24px 80px -24px rgba(255, 59, 67, 0.25); }
+
+/* hero sweeping searchlight (security motif)
+   Performance: gradient edges are already soft, so NO blur filter and NO
+   mix-blend-mode on the animated layer — only transform animates, which the
+   compositor handles on its own thread (no per-frame re-raster = no jank). */
+.searchlight {
+  position: absolute; top: -4%; left: 50%;
+  width: 120vw; height: 130%;
+  transform-origin: 50% 0%;
+  transform: translateX(-50%) rotate(2deg);
+  pointer-events: none; z-index: 0;
+  will-change: transform;
+  background: conic-gradient(from 10deg at 50% 0%,
+      transparent 0deg,
+      rgba(255,90,96,0.10) 6deg,
+      rgba(255,180,160,0.28) 12deg,
+      rgba(255,245,235,0.5) 16deg,
+      rgba(255,180,160,0.28) 20deg,
+      rgba(255,90,96,0.10) 26deg,
+      transparent 33deg,
+      transparent 360deg);
+  animation: searchlight-sweep 10s ease-in-out infinite alternate;
+}
+.searchlight-source {
+  position: absolute; top: -130px; left: 50%;
+  width: 420px; height: 420px; transform: translateX(-50%);
+  pointer-events: none; z-index: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(255,110,116,0.6), rgba(255,110,116,0.18) 38%, transparent 66%);
+}
+@keyframes searchlight-sweep {
+  0%   { transform: translateX(-50%) rotate(-30deg); }
+  100% { transform: translateX(-50%) rotate(34deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .searchlight { animation: none; transform: translateX(-50%) rotate(4deg); }
+}
+
+.hud-bracket {
+  position: absolute; width: 18px; height: 18px;
+  border-color: rgba(255,255,255,0.7); border-width: 0;
+  pointer-events: none;
+}
+.hud-bracket.border-t { border-top-width: 1.5px; }
+.hud-bracket.border-b { border-bottom-width: 1.5px; }
+.hud-bracket.border-l { border-left-width: 1.5px; }
+.hud-bracket.border-r { border-right-width: 1.5px; }
+@media (prefers-reduced-motion: reduce) { .scan-ring { animation: none; } }
+
+/* gradient hairline */
+.hr-glow {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-crimson), transparent);
+  opacity: 0.5;
+}
+
+/* ---------- scroll progress bar ---------- */
+.scroll-progress {
+  position: fixed; top: 0; left: 0; height: 2px; width: 100%;
+  transform: scaleX(0); transform-origin: 0 50%; z-index: 60;
+  background: linear-gradient(90deg, var(--color-crimson), var(--color-crimson-glow));
+  box-shadow: 0 0 12px rgba(255, 59, 67, 0.7);
+}
+
+/* ---------- magnetic button ---------- */
+.btn-primary {
+  position: relative; display: inline-flex; align-items: center; gap: .55rem;
+  padding: .85rem 1.6rem; border-radius: 9999px;
+  background: var(--color-crimson); color: #fff; font-weight: 600;
+  font-size: .95rem; overflow: hidden; isolation: isolate;
+  transition: transform .3s var(--ease-out-expo), box-shadow .3s;
+  box-shadow: 0 8px 30px -8px rgba(176,37,42,0.7);
+}
+.btn-primary::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: var(--color-crimson-bright);
+  transform: translateY(101%); transition: transform .4s var(--ease-out-expo);
+}
+.btn-primary:hover::before { transform: translateY(0); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .85rem 1.5rem; border-radius: 9999px;
+  border: 1px solid var(--color-line); color: var(--color-fog);
+  font-weight: 500; font-size: .95rem;
+  transition: border-color .3s, background-color .3s;
+}
+.btn-ghost:hover { border-color: var(--color-steel); background: rgba(255,255,255,0.03); }
+
+/* eyebrow label */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-family: var(--font-display); font-size: .72rem; font-weight: 500;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--color-crimson-bright);
+}
+.eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--color-crimson); }
+
+.section { position: relative; padding-block: clamp(5rem, 12vw, 9rem); }
+.container-x { width: min(1200px, 92vw); margin-inline: auto; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .lenis.lenis-smooth { scroll-behavior: smooth !important; }
+}

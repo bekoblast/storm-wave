@@ -1,0 +1,19 @@
+---
+const year = new Date().getFullYear();
+---
+<footer class="border-t border-[var(--color-line)] py-10">
+  <div class="container-x flex flex-col md:flex-row items-center justify-between gap-6">
+    <div class="flex items-center gap-3">
+      <img src="/images/logo.png" alt="StormView" class="h-6 w-auto" />
+      <span class="text-[var(--color-mist)] text-sm">Smart Security &amp; Surveillance</span>
+    </div>
+    <p class="text-[var(--color-mist)] text-sm text-center">
+      © {year} StormView. All rights reserved.
+    </p>
+    <div class="flex items-center gap-5 text-sm text-[var(--color-mist)]">
+      <a href="#features" class="hover:text-[var(--color-fog)] transition-colors">Overview</a>
+      <a href="#specs" class="hover:text-[var(--color-fog)] transition-colors">Specs</a>
+      <a href="#contact" class="hover:text-[var(--color-fog)] transition-colors">Contact</a>
+    </div>
+  </div>
+</footer>

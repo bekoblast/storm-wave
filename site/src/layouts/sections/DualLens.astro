@@ -1,0 +1,35 @@
+---
+const features = [
+  { t: "No blind spots", d: "Two lenses cover near and far at once — watch your gate and your driveway in a single feed." },
+  { t: "4MP clarity", d: "1296P dual sensors render plates, faces and detail sharp, day or night." },
+  { t: "AI human detection", d: "PIR + humanoid detection filters out cats and shadows — alerts only when it matters." },
+];
+---
+<section id="features" class="section">
+  <div class="container-x">
+    <div class="max-w-2xl">
+      <p class="eyebrow" data-reveal>Dual-Lens Linkage</p>
+      <h2 class="mt-5 text-[clamp(2rem,5vw,3.4rem)] font-bold leading-[1.05]" data-reveal data-reveal-delay="0.05">
+        Two cameras in one.<br />Zero blind spots.
+      </h2>
+      <p class="mt-5 text-[var(--color-mist)] text-lg" data-reveal data-reveal-delay="0.1">
+        A normal camera leaves a wide one-way gap. StormView's dual lens monitors two areas at once —
+        watch your gate and your driveway in a single feed.
+      </p>
+    </div>
+
+    <div class="mt-12 relative rounded-3xl overflow-hidden ring-glow max-w-2xl mx-auto" data-reveal data-reveal-delay="0.1">
+      <img src="/images/dual-lens.jpeg" alt="StormView dual lens — monitor two areas with no blind spots" class="block w-full h-auto" />
+    </div>
+
+    <!-- feature row -->
+    <div class="mt-16 grid md:grid-cols-3 gap-px bg-[var(--color-line)] rounded-2xl overflow-hidden" data-reveal-group>
+      {features.map((f) => (
+        <div class="bg-[var(--color-ink-2)] p-7" data-reveal-item style="opacity:0; transform:translateY(28px);">
+          <h3 class="font-display text-lg font-semibold">{f.t}</h3>
+          <p class="mt-2 text-[var(--color-mist)] text-sm leading-relaxed">{f.d}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

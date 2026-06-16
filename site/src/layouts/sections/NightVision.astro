@@ -1,0 +1,29 @@
+---
+---
+<section id="night" class="section bg-[var(--color-ink-2)] border-y border-[var(--color-line)]">
+  <div class="container-x grid lg:grid-cols-2 gap-12 items-center">
+    <div class="order-2 lg:order-1">
+      <p class="eyebrow" data-reveal>Full-Color Night Vision</p>
+      <h2 class="mt-5 text-[clamp(2rem,5vw,3.4rem)] font-bold leading-[1.05]" data-reveal data-reveal-delay="0.05">
+        Darkness has<br />nowhere to hide.
+      </h2>
+      <p class="mt-5 text-[var(--color-mist)] text-lg" data-reveal data-reveal-delay="0.1">
+        Built-in IR LEDs and dual spotlights let you see intruders in full color — not grainy black & white.
+        Motion triggers the lights and a built-in siren to scare them off.
+      </p>
+      <ul class="mt-8 space-y-3" data-reveal-group>
+        {["Warm full-color night vision","Active spotlight + acousto-optic alarm","Smart switch between IR and color in-app"].map((t) => (
+          <li class="flex items-center gap-3 text-[var(--color-steel-light)]" data-reveal-item style="opacity:0; transform:translateY(20px);">
+            <span class="grid place-items-center w-6 h-6 rounded-full bg-[var(--color-crimson)]/15 text-[var(--color-crimson-bright)] shrink-0">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>
+            </span>{t}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="order-1 lg:order-2 relative rounded-3xl overflow-hidden ring-glow max-w-md mx-auto w-full" data-reveal data-reveal-delay="0.1">
+      <img src="/images/night-vision.jpeg" alt="StormView full-color continuous monitoring at night" class="block w-full h-auto" />
+    </div>
+  </div>
+</section>

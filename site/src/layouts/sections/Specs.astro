@@ -1,0 +1,48 @@
+---
+const specs = [
+  ["Model", "SV-4GS2L"],
+  ["Image sensor", "1296P + 1296P dual CMOS (4MP)"],
+  ["Video", "H.265 · 2304×1296 @15fps"],
+  ["Lens", "3.6mm + 3.6mm · F2.8 · 120° FOV"],
+  ["Night vision", "Infrared + warm full-color"],
+  ["Detection", "PIR + motion + humanoid, ~10m"],
+  ["Pan / Tilt", "360° horizontal · 90° vertical"],
+  ["Connectivity", "4G LTE (FDD/TDD) + SIM"],
+  ["Battery", "10,800 mAh · solar rechargeable"],
+  ["Solar / charge", "7.5W panel · Type-C ~8h full"],
+  ["Storage", "TF card 32–256GB + cloud"],
+  ["Audio", "Two-way · AAC/G.726 · −42dB mic"],
+  ["Weatherproof", "IP66 · −30°C to +60°C"],
+  ["Protocols", "TCP/IP, HTTP, UDP, SMTP, DHCP, P2P"],
+];
+---
+<section id="specs" class="section">
+  <div class="container-x">
+    <div class="grid lg:grid-cols-[0.8fr_1.2fr] gap-12">
+      <div>
+        <p class="eyebrow" data-reveal>Tech Specs</p>
+        <h2 class="mt-5 text-[clamp(2rem,5vw,3.2rem)] font-bold leading-[1.05]" data-reveal data-reveal-delay="0.05">
+          SV-4GS2L<br /><span class="text-[var(--color-steel)]">Outdoor Solar 4G</span>
+        </h2>
+        <p class="mt-5 text-[var(--color-mist)]" data-reveal data-reveal-delay="0.1">
+          Everything packed into one weatherproof, self-powered unit. Built for villas, farms, sites and shops
+          across the GCC.
+        </p>
+        <a href="https://wa.me/971523620668" target="_blank" rel="noopener" class="btn-primary mt-8" data-magnetic data-reveal data-reveal-delay="0.15">
+          Request a quote
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="rounded-2xl border border-[var(--color-line)] overflow-hidden" data-reveal-group>
+        {specs.map(([k, v], i) => (
+          <div class={`flex items-center justify-between gap-4 px-5 py-3.5 text-sm ${i % 2 ? "bg-[var(--color-ink-2)]" : "bg-[var(--color-ink-3)]"}`}
+               data-reveal-item style="opacity:0; transform:translateY(16px);">
+            <span class="text-[var(--color-mist)]">{k}</span>
+            <span class="text-[var(--color-fog)] font-medium text-right">{v}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

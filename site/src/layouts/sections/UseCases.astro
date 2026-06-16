@@ -1,0 +1,22 @@
+---
+const cases = ["Villas", "Farms", "Construction Sites", "Warehouses", "Shops", "Offices", "Labor Camps", "Residential Buildings"];
+---
+<section class="section bg-[var(--color-ink-2)] border-y border-[var(--color-line)]">
+  <div class="container-x">
+    <div class="max-w-2xl">
+      <p class="eyebrow" data-reveal>Where It Works</p>
+      <h2 class="mt-5 text-[clamp(2rem,5vw,3.2rem)] font-bold leading-[1.05]" data-reveal data-reveal-delay="0.05">
+        Built for everywhere<br />the grid isn't.
+      </h2>
+    </div>
+    <div class="mt-12 flex flex-wrap gap-3" data-reveal-group>
+      {cases.map((c) => (
+        <span class="group flex items-center gap-2.5 px-5 py-3 rounded-full border border-[var(--color-line)] bg-[var(--color-ink-3)] text-[var(--color-steel-light)] hover:border-[var(--color-crimson)] hover:text-[var(--color-fog)] transition-colors"
+              data-reveal-item style="opacity:0; transform:translateY(20px);">
+          <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-crimson)] group-hover:scale-150 transition-transform"></span>
+          {c}
+        </span>
+      ))}
+    </div>
+  </div>
+</section>

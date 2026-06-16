@@ -1,0 +1,27 @@
+---
+const items = [
+  "Dual-Lens Vision", "Full-Color Night", "Solar Self-Charging", "4G LTE + WiFi",
+  "IP66 Weatherproof", "AI Human Detection", "Two-Way Audio", "360° Pan & Tilt",
+  "Cloud & SD Storage", "Mobile App Control",
+];
+---
+<section class="relative py-6 border-y border-[var(--color-line)] bg-[var(--color-ink-2)] overflow-hidden">
+  <div class="marquee flex gap-12 whitespace-nowrap">
+    {[0, 1].map(() => (
+      <div class="flex gap-12 items-center shrink-0" aria-hidden="true">
+        {items.map((t) => (
+          <span class="flex items-center gap-3 text-[var(--color-steel-light)] font-display text-sm tracking-wide">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-crimson)]"></span>{t}
+          </span>
+        ))}
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .marquee { width: max-content; animation: scroll 38s linear infinite; }
+  @keyframes scroll { to { transform: translateX(-50%); } }
+  .marquee:hover { animation-play-state: paused; }
+  @media (prefers-reduced-motion: reduce) { .marquee { animation: none; } }
+</style>

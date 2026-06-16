@@ -1,0 +1,50 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const {
+  title = "StormView — Solar 4G Security Cameras That Never Sleep",
+  description = "StormView builds solar-powered 4G & WiFi security cameras with dual-lens vision, full-color night monitoring and AI detection. Reliable protection for villas, farms, sites and shops across the UAE, Saudi Arabia & the GCC.",
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/images/battery.jpeg" />
+    <meta name="theme-color" content="#0a0b0d" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <slot />
+
+    <script>
+      import { initInteractions } from "../scripts/main.js";
+      initInteractions();
+    </script>
+  </body>
+</html>

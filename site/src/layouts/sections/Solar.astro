@@ -1,0 +1,54 @@
+---
+const stats = [
+  { v: "7.5W", l: "Solar panel input" },
+  { v: "~8h", l: "Type-C full charge" },
+  { v: "15s", l: "Wake-up time" },
+];
+---
+<section id="solar" class="section">
+  <div class="container-x grid lg:grid-cols-2 gap-14 items-center">
+    <!-- battery viz -->
+    <div class="relative flex justify-center" data-battery data-reveal>
+      <div class="absolute inset-0 -m-6 rounded-full blur-3xl pointer-events-none"
+           style="background: radial-gradient(circle, rgba(34,197,94,0.18), transparent 60%);"></div>
+      <div class="relative">
+        <!-- battery cap -->
+        <div class="mx-auto w-16 h-3 rounded-t-md bg-[var(--color-line)]"></div>
+        <!-- battery body -->
+        <div class="relative w-40 h-72 rounded-2xl border-2 border-[var(--color-line)] bg-[var(--color-ink-3)] overflow-hidden p-2">
+          <div class="relative w-full h-full rounded-lg overflow-hidden bg-[var(--color-ink)]">
+            <div data-battery-fill class="absolute bottom-0 inset-x-0 h-0"
+                 style="background: linear-gradient(to top, #15803d, #22c55e, #4ade80);">
+              <div class="absolute top-0 inset-x-0 h-6 bg-white/20 blur-md"></div>
+            </div>
+            <div class="absolute inset-0 flex items-center justify-center">
+              <span data-battery-pct class="font-display text-3xl font-bold text-white drop-shadow-lg">0%</span>
+            </div>
+          </div>
+        </div>
+        <p class="text-center mt-4 font-display text-sm tracking-wide text-[var(--color-steel-light)]">10,800 mAh · Solar rechargeable</p>
+      </div>
+    </div>
+
+    <!-- copy -->
+    <div>
+      <p class="eyebrow" data-reveal>Solar Self-Charging</p>
+      <h2 class="mt-5 text-[clamp(2rem,5vw,3.4rem)] font-bold leading-[1.05]" data-reveal data-reveal-delay="0.05">
+        Install it once.<br />Forget the wiring.
+      </h2>
+      <p class="mt-5 text-[var(--color-mist)] text-lg" data-reveal data-reveal-delay="0.1">
+        A 7.5W panel and 10,800mAh battery keep StormView running through cloudy days and long nights —
+        ultra-low power consumption means weeks of standby on a single charge. No electrician. No trenching. No power bill.
+      </p>
+
+      <div class="mt-10 grid grid-cols-3 gap-px bg-[var(--color-line)] rounded-2xl overflow-hidden" data-reveal-group>
+        {stats.map((s) => (
+          <div class="bg-[var(--color-ink-2)] p-5 text-center" data-reveal-item style="opacity:0; transform:translateY(20px);">
+            <div class="font-display text-2xl font-bold text-[var(--color-fog)]">{s.v}</div>
+            <div class="mt-1 text-xs text-[var(--color-mist)]">{s.l}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

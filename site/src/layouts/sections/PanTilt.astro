@@ -1,0 +1,30 @@
+---
+---
+<section class="section bg-[var(--color-ink-2)] border-y border-[var(--color-line)] overflow-hidden">
+  <div class="container-x">
+    <div class="max-w-2xl mx-auto text-center">
+      <p class="eyebrow justify-center" data-reveal style="display:inline-flex;">360° Pan &amp; Tilt</p>
+      <h2 class="mt-5 text-[clamp(2rem,5vw,3.4rem)] font-bold leading-[1.05]" data-reveal data-reveal-delay="0.05">
+        Cover more ground.
+      </h2>
+      <p class="mt-5 text-[var(--color-mist)] text-lg" data-reveal data-reveal-delay="0.1">
+        Horizontal 360° panning and 90° vertical tilt — steer the lens anywhere from your phone.
+        Grab the image and drag to feel it move.
+      </p>
+    </div>
+
+    <div class="mt-12 relative max-w-xl mx-auto rounded-3xl overflow-hidden ring-glow select-none touch-none cursor-grab"
+         data-pan data-reveal data-reveal-delay="0.1">
+      <img data-pan-img src="/images/pan-tilt.jpeg" alt="StormView pan and tilt coverage"
+           class="block w-full h-auto transition-transform duration-200 ease-out will-change-transform" />
+      <div class="absolute top-4 left-4 flex items-center gap-2 bg-[var(--color-ink)]/70 backdrop-blur px-3 py-1.5 rounded-full text-xs">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 7l-4 5 4 5M16 7l4 5-4 5"/></svg>
+        Drag to rotate
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  [data-pan].is-grab { cursor: grabbing; }
+</style>

@@ -1,0 +1,93 @@
+---
+const wa = "https://wa.me/971523620668";
+---
+<section id="hero" class="relative min-h-[100svh] flex items-center overflow-hidden">
+  <!-- ambient backdrop -->
+  <div class="absolute inset-0 bg-grid"></div>
+  <div class="absolute inset-0 pointer-events-none"
+       style="background: radial-gradient(60% 50% at 70% 40%, rgba(255,59,67,0.12), transparent 70%);"></div>
+  <div class="absolute -top-40 left-1/2 -translate-x-1/2 w-[120vw] h-[60vh] pointer-events-none"
+       style="background: radial-gradient(ellipse at center, rgba(176,37,42,0.16), transparent 65%);"></div>
+  <!-- sweeping searchlight (security motif) -->
+  <div class="searchlight" aria-hidden="true"></div>
+  <div class="searchlight-source" aria-hidden="true"></div>
+
+  <div class="container-x relative z-10 grid lg:grid-cols-2 gap-10 items-center pt-28 pb-16">
+    <!-- copy -->
+    <div>
+      <p class="eyebrow" data-reveal>Solar · 4G LTE · AI Detection</p>
+      <h1 class="mt-6 text-[clamp(2.6rem,7vw,5.2rem)] leading-[0.98] font-bold" data-reveal data-reveal-delay="0.05">
+        The camera that<br />
+        <span class="text-glow text-[var(--color-crimson-bright)]">never sleeps.</span>
+      </h1>
+      <p class="mt-6 max-w-md text-[var(--color-mist)] text-lg leading-relaxed" data-reveal data-reveal-delay="0.12">
+        StormView solar-powered security cameras keep watch around the clock — dual-lens vision with no blind spots,
+        full-color night monitoring and instant mobile alerts. No wiring. No monthly limits.
+      </p>
+
+      <div class="mt-9 flex flex-wrap items-center gap-3" data-reveal data-reveal-delay="0.18">
+        <a href="#features" class="btn-primary" data-magnetic>
+          Explore the SV-4GS2L
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href={wa} target="_blank" rel="noopener" class="btn-ghost" data-magnetic>Talk to sales</a>
+      </div>
+
+      <!-- mini stats -->
+      <div class="mt-12 flex gap-8" data-reveal data-reveal-delay="0.24">
+        <div>
+          <div class="font-display text-2xl font-semibold"><span data-count="10800" data-suffix="">0</span></div>
+          <div class="text-xs text-[var(--color-mist)] tracking-wide mt-1">mAh solar battery</div>
+        </div>
+        <div class="w-px bg-[var(--color-line)]"></div>
+        <div>
+          <div class="font-display text-2xl font-semibold"><span data-count="360" data-suffix="°">0</span></div>
+          <div class="text-xs text-[var(--color-mist)] tracking-wide mt-1">pan coverage</div>
+        </div>
+        <div class="w-px bg-[var(--color-line)]"></div>
+        <div>
+          <div class="font-display text-2xl font-semibold">IP66</div>
+          <div class="text-xs text-[var(--color-mist)] tracking-wide mt-1">weatherproof</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- product -->
+    <div class="relative mx-auto w-full max-w-md lg:max-w-none" data-reveal data-reveal-delay="0.1">
+      <div class="absolute inset-0 -m-10 rounded-full blur-3xl pointer-events-none"
+           style="background: radial-gradient(circle, rgba(255,59,67,0.22), transparent 60%);"></div>
+      <div class="relative rounded-3xl overflow-hidden ring-glow" data-hero-img data-float>
+        <img src="/images/battery.jpeg" alt="StormView SV-4GS2L solar security camera"
+             class="block w-full h-auto"
+             style="filter: saturate(0.72) brightness(0.92) contrast(1.06);" />
+        <!-- blend promo art into the dark theme -->
+        <div class="absolute inset-0 mix-blend-color pointer-events-none"
+             style="background: linear-gradient(150deg, rgba(176,37,42,0.35), rgba(60,70,90,0.25));"></div>
+        <div class="absolute inset-0 mix-blend-multiply pointer-events-none"
+             style="background: linear-gradient(150deg, rgba(176,37,42,0.18), rgba(10,11,13,0.2));"></div>
+        <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to top, rgba(10,11,13,0.9), transparent 48%);"></div>
+        <div class="absolute inset-0 pointer-events-none ring-1 ring-inset ring-white/10 rounded-3xl"></div>
+        <!-- corner brackets, camera HUD feel -->
+        <span class="hud-bracket top-4 left-4 border-t border-l"></span>
+        <span class="hud-bracket top-4 right-4 border-t border-r"></span>
+        <span class="hud-bracket bottom-4 left-4 border-b border-l"></span>
+        <span class="hud-bracket bottom-4 right-4 border-b border-r"></span>
+        <span class="absolute top-4 right-8 flex items-center gap-1.5 text-[0.6rem] tracking-widest text-white/80">
+          <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>REC
+        </span>
+      </div>
+      <!-- floating chip -->
+      <div class="absolute -left-4 bottom-10 bg-[var(--color-ink-3)]/90 backdrop-blur border border-[var(--color-line)] rounded-2xl px-4 py-3 shadow-2xl" data-float>
+        <div class="flex items-center gap-2 text-sm font-medium">
+          <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span> Live · Self-charging
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- scroll cue -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[var(--color-mist)]">
+    <span class="text-[0.65rem] tracking-[0.3em] uppercase">Scroll</span>
+    <span class="w-px h-10 bg-gradient-to-b from-[var(--color-crimson)] to-transparent"></span>
+  </div>
+</section>

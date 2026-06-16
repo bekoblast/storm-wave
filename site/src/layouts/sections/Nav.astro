@@ -1,0 +1,58 @@
+---
+const links = [
+  { label: "Overview", href: "#features" },
+  { label: "Night Vision", href: "#night" },
+  { label: "Solar", href: "#solar" },
+  { label: "Specs", href: "#specs" },
+  { label: "Range", href: "#range" },
+];
+const wa = "https://wa.me/971523620668";
+---
+<header id="nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-500">
+  <div class="container-x flex items-center justify-between h-[72px]">
+    <a href="#hero" class="flex items-center gap-2" aria-label="StormView home">
+      <img src="/images/logo.png" alt="StormView" class="h-7 w-auto" />
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8">
+      {links.map((l) => (
+        <a href={l.href} class="text-sm text-[var(--color-mist)] hover:text-[var(--color-fog)] transition-colors">{l.label}</a>
+      ))}
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <span class="hidden sm:block">
+        <a href={wa} target="_blank" rel="noopener" class="btn-primary !py-2.5 !px-5 !text-sm" data-magnetic>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 004.79 1.22h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0012.04 2zm5.8 14.16c-.25.7-1.44 1.33-1.99 1.41-.51.08-1.15.11-1.86-.12-.43-.14-.98-.32-1.69-.62-2.97-1.28-4.91-4.27-5.06-4.47-.15-.2-1.21-1.61-1.21-3.07s.77-2.18 1.04-2.48c.27-.3.59-.37.79-.37.2 0 .4 0 .57.01.18.01.43-.07.67.51.25.6.84 2.06.91 2.21.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.18-.31.39-.45.53-.15.15-.3.31-.13.6.17.3.77 1.27 1.65 2.06 1.14 1.01 2.1 1.33 2.4 1.48.3.15.47.12.65-.07.18-.2.74-.86.94-1.16.2-.3.4-.25.67-.15.27.1 1.72.81 2.02.96.3.15.5.22.57.35.07.12.07.72-.18 1.42z"/></svg>
+          WhatsApp
+        </a>
+      </span>
+      <button id="burger" class="md:hidden relative w-9 h-9 flex flex-col items-center justify-center gap-[5px]" aria-label="Menu">
+        <span class="block w-5 h-[1.5px] bg-[var(--color-fog)] transition-all"></span>
+        <span class="block w-5 h-[1.5px] bg-[var(--color-fog)] transition-all"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- mobile menu -->
+  <div id="mobileMenu" class="md:hidden fixed inset-0 top-[72px] bg-[var(--color-ink)]/97 backdrop-blur-xl">
+    <nav class="container-x flex flex-col gap-1 pt-8">
+      {links.map((l) => (
+        <a href={l.href} class="py-4 text-2xl font-display border-b border-[var(--color-line)]">{l.label}</a>
+      ))}
+      <a href={wa} target="_blank" rel="noopener" class="btn-primary mt-6 justify-center">Chat on WhatsApp</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  #nav.is-scrolled {
+    background: color-mix(in srgb, var(--color-ink) 80%, transparent);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--color-line);
+  }
+  #burger.is-open span:nth-child(1) { transform: translateY(3.5px) rotate(45deg); }
+  #burger.is-open span:nth-child(2) { transform: translateY(-3px) rotate(-45deg); }
+  #mobileMenu { opacity: 0; pointer-events: none; transform: translateY(-8px); transition: all .35s var(--ease-out-expo); }
+  #mobileMenu.is-open { opacity: 1; pointer-events: auto; transform: translateY(0); }
+</style>
