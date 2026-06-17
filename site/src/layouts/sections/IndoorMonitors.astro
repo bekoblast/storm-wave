@@ -1,0 +1,77 @@
+---
+const wa = "https://wa.me/971523620668";
+
+const monitors = [
+  {
+    name: "Screen Baby Monitor",
+    badge: "Built-in Screen",
+    img: "/images/screen-monitor.jpg",
+    tagline: "A home video-call camera with its own display — one tap to see and talk to the nursery, no phone needed.",
+    highlight: "Screen",
+    highlightLabel: "On-device display",
+    features: ["Built-in display", "One-click video call", "Full-color night", "Two-way intercom", "Human detection", "Optical + acoustic alert", "Multi-user view"],
+  },
+  {
+    name: "Smart Indoor Monitor",
+    badge: "Indoor PTZ",
+    img: "/images/indoor-monitor.jpg",
+    tagline: "Compact 3MP pan & tilt camera for baby rooms, homes and offices — full coverage over your home WiFi.",
+    highlight: "355°",
+    highlightLabel: "Pan & tilt coverage",
+    features: ["3MP HD", "2.4G WiFi", "355° / 55° PTZ", "Full-color night", "Two-way audio", "Human detection", "Audible alarm", "Double encryption"],
+  },
+];
+---
+<section id="indoor" class="section bg-[var(--color-ink-2)] border-y border-[var(--color-line)]">
+  <div class="container-x">
+    <div class="max-w-2xl">
+      <p class="eyebrow" data-reveal>Indoor &amp; Baby</p>
+      <h2 class="mt-5 text-[clamp(2rem,5vw,3.4rem)] font-bold leading-[1.05]" data-reveal data-reveal-delay="0.05">
+        Eyes inside, too.
+      </h2>
+      <p class="mt-5 text-[var(--color-mist)] text-lg" data-reveal data-reveal-delay="0.1">
+        Beyond the solar 4G range, StormView keeps watch indoors — gentle, smart monitors for nurseries,
+        homes and offices, with full-color night vision and instant two-way talk.
+      </p>
+    </div>
+
+    <div class="mt-12 grid md:grid-cols-2 gap-5" data-reveal-group>
+      {monitors.map((m) => (
+        <article class="group relative rounded-2xl overflow-hidden border border-[var(--color-line)] bg-[var(--color-ink-3)] flex flex-col"
+                 data-reveal-item style="opacity:0; transform:translateY(28px);">
+          <div class="relative aspect-[4/3] overflow-hidden bg-gradient-to-b from-white to-[#e6eaee]">
+            <img src={m.img} alt={m.name} class="w-full h-full object-contain p-4 transition-transform duration-700 group-hover:scale-105" />
+            <span class="absolute top-3 left-3 text-[0.65rem] font-semibold tracking-wide px-2.5 py-1 rounded-full bg-[var(--color-ink)]/80 text-white">{m.badge}</span>
+          </div>
+
+          <div class="p-6 flex flex-col flex-1">
+            <div class="flex items-start justify-between gap-4">
+              <h3 class="font-display text-xl font-semibold">{m.name}</h3>
+              <div class="text-right shrink-0">
+                <div class="font-display text-xl font-bold leading-none text-[var(--color-crimson-bright)]">{m.highlight}</div>
+                <div class="text-[0.6rem] text-[var(--color-mist)] mt-1 uppercase tracking-wider">{m.highlightLabel}</div>
+              </div>
+            </div>
+            <p class="mt-3 text-sm text-[var(--color-mist)] leading-relaxed">{m.tagline}</p>
+
+            <div class="mt-4 flex flex-wrap gap-1.5">
+              {m.features.map((f) => (
+                <span class="text-[0.7rem] px-2.5 py-1 rounded-full border border-[var(--color-line)] bg-[var(--color-ink)]/40 text-[var(--color-steel-light)]">{f}</span>
+              ))}
+            </div>
+
+            <a href={wa} target="_blank" rel="noopener"
+               class="mt-5 inline-flex items-center gap-2 text-sm font-medium text-[var(--color-fog)] group-hover:text-[var(--color-crimson-bright)] transition-colors">
+              Ask about this model
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <p class="mt-6 text-xs text-[var(--color-mist)]" data-reveal>
+      Specs drafted from product imagery — model numbers &amp; final figures to be confirmed.
+    </p>
+  </div>
+</section>

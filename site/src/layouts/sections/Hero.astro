@@ -1,5 +1,19 @@
 ---
 const wa = "https://wa.me/971523620668";
+
+// pool of feeds the 4 monitors rotate through (like switching CCTV channels)
+const pool = [
+  { name: "SV-4GS2L", img: "/images/battery.jpeg" },
+  { name: "SV-4GS2L V2", img: "/images/v2-main.jpg" },
+  { name: "4G LTE Solar 8MP", img: "/images/8mp-main.jpg" },
+  { name: "Indoor Monitor", img: "/images/indoor-monitor.jpg" },
+  { name: "Screen Baby Monitor", img: "/images/screen-monitor.jpg" },
+  { name: "V2 · Night", img: "/images/v2-night.jpg" },
+  { name: "Dual-Lens", img: "/images/dual-lens.jpeg" },
+  { name: "Pan & Tilt", img: "/images/pan-tilt.jpeg" },
+];
+// the 4 monitors (fixed CAM ids) start on the first four feeds
+const panels = [0, 1, 2, 3].map((i) => ({ cam: `CAM 0${i + 1}`, ...pool[i] }));
 ---
 <section id="hero" class="relative min-h-[100svh] flex items-center overflow-hidden">
   <!-- ambient backdrop -->
@@ -52,34 +66,50 @@ const wa = "https://wa.me/971523620668";
       </div>
     </div>
 
-    <!-- product -->
+    <!-- live surveillance wall -->
     <div class="relative mx-auto w-full max-w-md lg:max-w-none" data-reveal data-reveal-delay="0.1">
       <div class="absolute inset-0 -m-10 rounded-full blur-3xl pointer-events-none"
-           style="background: radial-gradient(circle, rgba(255,59,67,0.22), transparent 60%);"></div>
-      <div class="relative rounded-3xl overflow-hidden ring-glow" data-hero-img data-float>
-        <img src="/images/battery.jpeg" alt="StormView SV-4GS2L solar security camera"
-             class="block w-full h-auto"
-             style="filter: saturate(0.72) brightness(0.92) contrast(1.06);" />
-        <!-- blend promo art into the dark theme -->
-        <div class="absolute inset-0 mix-blend-color pointer-events-none"
-             style="background: linear-gradient(150deg, rgba(176,37,42,0.35), rgba(60,70,90,0.25));"></div>
-        <div class="absolute inset-0 mix-blend-multiply pointer-events-none"
-             style="background: linear-gradient(150deg, rgba(176,37,42,0.18), rgba(10,11,13,0.2));"></div>
-        <div class="absolute inset-0 pointer-events-none" style="background: linear-gradient(to top, rgba(10,11,13,0.9), transparent 48%);"></div>
-        <div class="absolute inset-0 pointer-events-none ring-1 ring-inset ring-white/10 rounded-3xl"></div>
-        <!-- corner brackets, camera HUD feel -->
-        <span class="hud-bracket top-4 left-4 border-t border-l"></span>
-        <span class="hud-bracket top-4 right-4 border-t border-r"></span>
-        <span class="hud-bracket bottom-4 left-4 border-b border-l"></span>
-        <span class="hud-bracket bottom-4 right-4 border-b border-r"></span>
-        <span class="absolute top-4 right-8 flex items-center gap-1.5 text-[0.6rem] tracking-widest text-white/80">
-          <span class="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span>REC
-        </span>
+           style="background: radial-gradient(circle, rgba(255,59,67,0.18), transparent 60%);"></div>
+      <div class="relative rounded-3xl overflow-hidden ring-glow bg-[#08090b]" data-wall data-pool={JSON.stringify(pool)}>
+        <!-- monitor header bar -->
+        <div class="flex items-center justify-between px-4 pt-3.5 pb-2.5 border-b border-white/5">
+          <div class="flex items-center gap-2 font-display text-[0.62rem] tracking-[0.18em] text-[var(--color-steel-light)]">
+            <span class="w-1.5 h-1.5 rounded-full bg-[var(--color-crimson-bright)] animate-pulse"></span>
+            STORMVIEW · LIVE MONITOR
+          </div>
+          <div class="flex items-center gap-3 text-[0.6rem] tracking-wider text-[var(--color-mist)] font-display">
+            <span data-clock>00:00:00</span>
+            <span class="hidden sm:inline">CH 01–04</span>
+          </div>
+        </div>
+        <!-- 2x2 camera feeds -->
+        <div class="grid grid-cols-2 gap-1.5 p-1.5">
+          {panels.map((f, i) => (
+            <div class="feed relative aspect-square overflow-hidden rounded-md bg-black" data-cur={i}>
+              <img src={f.img} alt={f.name} class="feed-img absolute inset-0 w-full h-full object-cover" style={`animation-delay:-${i * 3.5}s`} />
+              <div class="absolute inset-0 feed-grade pointer-events-none"></div>
+              <div class="absolute inset-0 scanlines pointer-events-none"></div>
+              <div class="feed-sweep pointer-events-none"></div>
+              <div class="absolute inset-0 feed-vignette pointer-events-none"></div>
+              <div class="absolute inset-0 feed-glitch pointer-events-none"></div>
+              <!-- HUD top -->
+              <div class="absolute top-1.5 left-2 right-2 flex items-center justify-between text-[0.5rem] font-display tracking-wider text-white/85">
+                <span>{f.cam}</span>
+                <span class="rec flex items-center gap-1"><span class="w-1 h-1 rounded-full bg-red-500"></span>REC</span>
+              </div>
+              <!-- HUD bottom -->
+              <div class="absolute bottom-1.5 left-2 right-2 flex items-center justify-between text-[0.5rem] font-display tracking-wide text-white/80">
+                <span class="truncate max-w-[62%]" data-feed-name>{f.name}</span>
+                <span data-clock-cell>00:00:00</span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-      <!-- floating chip -->
-      <div class="absolute -left-4 bottom-10 bg-[var(--color-ink-3)]/90 backdrop-blur border border-[var(--color-line)] rounded-2xl px-4 py-3 shadow-2xl" data-float>
-        <div class="flex items-center gap-2 text-sm font-medium">
-          <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span> Live · Self-charging
+      <!-- status chip -->
+      <div class="absolute -left-4 bottom-8 bg-[var(--color-ink-3)]/95 backdrop-blur border border-[var(--color-line)] rounded-2xl px-4 py-2.5 shadow-2xl">
+        <div class="flex items-center gap-2 text-[0.82rem] font-medium">
+          <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span> 4 cameras · live
         </div>
       </div>
     </div>
@@ -91,3 +121,56 @@ const wa = "https://wa.me/971523620668";
     <span class="w-px h-10 bg-gradient-to-b from-[var(--color-crimson)] to-transparent"></span>
   </div>
 </section>
+
+<style>
+  /* Ken Burns drift — transform only (compositor-friendly, no jank) */
+  .feed-img { animation: kenburns 17s ease-in-out infinite alternate; will-change: transform; }
+  @keyframes kenburns {
+    0%   { transform: scale(1.06) translate(1.5%, 1%); }
+    100% { transform: scale(1.15) translate(-2%, -1.5%); }
+  }
+  .feed:nth-child(2) .feed-img { animation-duration: 20s; }
+  .feed:nth-child(3) .feed-img { animation-duration: 23s; }
+  .feed:nth-child(4) .feed-img { animation-duration: 18.5s; }
+
+  /* CCTV color grade — static cool tint, no blend/filter on animated layers */
+  .feed-grade { background: linear-gradient(180deg, rgba(30,60,90,0.16), rgba(0,0,0,0.06) 60%, rgba(0,0,0,0.18)); }
+  .scanlines {
+    background: repeating-linear-gradient(to bottom, rgba(0,0,0,0) 0, rgba(0,0,0,0) 2px, rgba(0,0,0,0.16) 3px);
+    opacity: 0.5;
+  }
+  .feed-vignette { box-shadow: inset 0 0 26px rgba(0,0,0,0.6); }
+
+  /* scan sweep — thin bright bar translating down */
+  .feed-sweep {
+    position: absolute; left: 0; right: 0; top: 0; height: 42%;
+    background: linear-gradient(to bottom, transparent, rgba(150,210,255,0.07), transparent);
+    animation: feedsweep 6s linear infinite; will-change: transform;
+  }
+  .feed:nth-child(2) .feed-sweep { animation-duration: 7.6s; }
+  .feed:nth-child(3) .feed-sweep { animation-duration: 5.4s; }
+  .feed:nth-child(4) .feed-sweep { animation-duration: 8.2s; }
+  @keyframes feedsweep { 0% { transform: translateY(-110%); } 100% { transform: translateY(260%); } }
+
+  .rec { color: #ff6b6b; animation: recblink 1.6s steps(1, end) infinite; }
+  @keyframes recblink { 0%, 55% { opacity: 1; } 56%, 100% { opacity: 0.3; } }
+
+  /* channel switch — dim the feed + glitch flash while the source swaps */
+  .feed-img { transition: opacity 0.18s ease; }
+  .feed.switching .feed-img { opacity: 0.18; }
+  .feed-glitch { opacity: 0; }
+  .feed.switching .feed-glitch { animation: chglitch 0.46s steps(2, end); }
+  @keyframes chglitch {
+    0%   { opacity: 0; }
+    12%  { opacity: 0.65; background: rgba(170,205,255,0.5); transform: translateX(-2.5%); }
+    28%  { opacity: 0.15; transform: translateX(3%); }
+    46%  { opacity: 0.7; background: rgba(255,255,255,0.32); transform: translateX(0); }
+    70%  { opacity: 0.1; }
+    100% { opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .feed-img, .feed-sweep, .rec { animation: none; }
+    .feed-img { transform: scale(1.06); }
+  }
+</style>

@@ -108,6 +108,53 @@ export function initInteractions() {
     });
   }
 
+  /* ---------------- Live monitor clocks (surveillance wall) ---------------- */
+  const clocks = document.querySelectorAll("[data-clock], [data-clock-cell]");
+  if (clocks.length) {
+    const tick = () => {
+      const t = new Date().toLocaleTimeString("en-GB", { hour12: false });
+      clocks.forEach((c) => (c.textContent = t));
+    };
+    tick();
+    setInterval(tick, 1000);
+  }
+
+  /* ---------------- Surveillance wall — channel switching ---------------- */
+  const wall = document.querySelector("[data-wall]");
+  if (wall && !reduceMotion) {
+    let pool = [];
+    try { pool = JSON.parse(wall.dataset.pool || "[]"); } catch (e) { pool = []; }
+    const panels = [...wall.querySelectorAll(".feed")].map((el, i) => ({
+      el,
+      img: el.querySelector(".feed-img"),
+      nameEl: el.querySelector("[data-feed-name]"),
+      cur: parseInt(el.dataset.cur || i, 10),
+    }));
+
+    if (pool.length > panels.length) {
+      // preload all feed images so swaps are instant
+      pool.forEach((f) => { const im = new Image(); im.src = f.img; });
+
+      const switchPanel = (p) => {
+        const taken = new Set(panels.filter((q) => q !== p).map((q) => q.cur));
+        const choices = pool.map((_, i) => i).filter((i) => i !== p.cur && !taken.has(i));
+        if (!choices.length) return;
+        p.cur = choices[Math.floor(Math.random() * choices.length)];
+        p.el.classList.add("switching");
+        setTimeout(() => {
+          p.img.src = pool[p.cur].img;
+          p.img.alt = pool[p.cur].name;
+          if (p.nameEl) p.nameEl.textContent = pool[p.cur].name;
+        }, 130);
+        setTimeout(() => p.el.classList.remove("switching"), 470);
+      };
+      const schedule = (p) => {
+        p.timer = setTimeout(() => { switchPanel(p); schedule(p); }, 3500 + Math.random() * 4000);
+      };
+      panels.forEach(schedule);
+    }
+  }
+
   /* ---------------- Animated battery fill ---------------- */
   const battery = document.querySelector("[data-battery]");
   if (battery) {
