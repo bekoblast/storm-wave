@@ -8,6 +8,9 @@ site/.astro/
 dist/
 .astro/
 
+# deploy artifacts
+*.zip
+
 # logs
 *.log
 npm-debug.log*

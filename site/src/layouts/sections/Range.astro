@@ -34,20 +34,40 @@ const models = [
     highlightLabel: "Sharpest sensor",
     available: true,
   },
+  {
+    name: "Solar Outdoor WiFi",
+    badge: "WiFi",
+    tagline: "Dual-lens 4MP solar cam — runs on your WiFi, no SIM",
+    img: "/images/solar-wifi.jpg",
+    highlight: "WiFi",
+    highlightUnit: "",
+    highlightLabel: "No SIM needed",
+    available: true,
+  },
+  {
+    name: "AOV Solar Alert",
+    badge: "24/7 AOV",
+    tagline: "Always-on video — continuous 365-day recording, free local replay",
+    img: "/images/aov.jpg",
+    highlight: "24/7",
+    highlightUnit: "",
+    highlightLabel: "Non-stop recording",
+    available: true,
+  },
 ];
 
-// rows: [label, SV-4GS2L, V2, 8MP]
+// rows: [label, SV-4GS2L, V2, 8MP, Solar WiFi, AOV]
 const specs = [
-  ["Resolution", "4MP dual-lens", "2K dual-screen", "8MP"],
-  ["Battery", "10,800 mAh", "6,000 mAh", "~10,400 mAh"],
-  ["Solar panel", "7.5W", "7.5W", "Yes"],
-  ["Connectivity", "4G LTE + SIM", "4G LTE + SIM", "4G LTE + SIM"],
-  ["Night vision", "Full-color + IR", "Full-color + IR", "Full-color"],
-  ["Pan / Tilt", "360° / 90°", "355° / 90°", "360° / 90°"],
-  ["AI detection", "PIR + humanoid", "PIR + AI human · 10m", "Motion detection"],
-  ["Audio", "Two-way", "Two-way full-duplex", "Two-way"],
-  ["Storage", "microSD + cloud", "microSD 32–256GB + cloud", "microSD + cloud"],
-  ["Weatherproof", "IP66", "IP66 · −30~60°C", "IP66"],
+  ["Resolution", "4MP dual-lens", "2K dual-screen", "8MP", "4MP dual-lens", "4MP dual-lens"],
+  ["Battery", "10,800 mAh", "6,000 mAh", "~10,400 mAh", "Solar rechargeable", "Solar rechargeable"],
+  ["Solar panel", "7.5W", "7.5W", "Yes", "Yes", "Yes"],
+  ["Connectivity", "4G LTE + SIM", "4G LTE + SIM", "4G LTE + SIM", "WiFi 2.4G", "4G LTE + SIM"],
+  ["Night vision", "Full-color + IR", "Full-color + IR", "Full-color", "Full-color + IR", "Full-color + IR"],
+  ["Pan / Tilt", "360° / 90°", "355° / 90°", "360° / 90°", "360° / 90°", "355° / 90°"],
+  ["AI detection", "PIR + humanoid", "PIR + AI human · 10m", "Motion detection", "Motion detection", "Motion detection"],
+  ["Audio", "Two-way", "Two-way full-duplex", "Two-way", "Two-way", "Two-way"],
+  ["Storage", "microSD + cloud", "microSD 32–256GB + cloud", "microSD + cloud", "microSD + cloud", "microSD · 24/7 record"],
+  ["Weatherproof", "IP66", "IP66 · −30~60°C", "IP66", "IP66 · −20~55°C", "IP66 · rain/heat/frost"],
 ];
 ---
 <section id="range" class="section">
@@ -58,13 +78,13 @@ const specs = [
         Pick the StormView<br />that fits your site.
       </h2>
       <p class="mt-5 text-[var(--color-mist)] text-lg" data-reveal data-reveal-delay="0.1">
-        Three solar 4G models, one app. From the big-battery flagship to the dual-screen 2K and the
-        8MP detail king — compare them side by side.
+        Five outdoor solar cameras, one app — from the big-battery 4G flagship to the dual-screen 2K,
+        the 8MP detail king, the no-SIM WiFi model and the always-on AOV recorder. Compare them side by side.
       </p>
     </div>
 
     <!-- model cards -->
-    <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-5" data-reveal-group>
+    <div class="mt-12 grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5" data-reveal-group>
       {models.map((m) => (
         <article class={`group relative rounded-2xl overflow-hidden border bg-[var(--color-ink-3)] flex flex-col ${m.featured ? "border-[var(--color-crimson)]/50 ring-1 ring-[var(--color-crimson)]/30" : "border-[var(--color-line)]"}`}
                  data-reveal-item style="opacity:0; transform:translateY(28px);">
@@ -105,7 +125,7 @@ const specs = [
     <div class="mt-14" data-reveal>
       <h3 class="font-display text-xl font-semibold mb-5">Full comparison</h3>
       <div class="overflow-x-auto rounded-2xl border border-[var(--color-line)]">
-        <table class="w-full min-w-[680px] text-sm border-collapse">
+        <table class="w-full min-w-[1000px] text-sm border-collapse">
           <thead>
             <tr class="bg-[var(--color-ink-3)]">
               <th class="text-left font-medium text-[var(--color-mist)] px-5 py-4 w-[24%]">Spec</th>
